@@ -18,7 +18,8 @@
     "watch": "onchange 'src/**/*.**' 'public/**/*.**' './package.json' -- prettier --write {{changed}}",
     "clean-s3": "aws s3 rm s3://indrajeetambadekar.elysium-cloud.com --recursive",
     "sync-s3": "aws s3 sync static/. s3://indrajeetambadekar.elysium-cloud.com",
-    "deploy": "npm run clean-s3 && npm run sync-s3",
+    "invalidate":"aws cloudfront create-invalidation --distribution-id E2S068BLINK7GX --paths '/*'",
+    "deploy": "npm run clean-s3 && npm run sync-s3 && npm run invalidate",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
